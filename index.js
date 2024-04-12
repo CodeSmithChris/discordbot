@@ -54,6 +54,6 @@ client.on('interactionCreate'), (interaction) => {
     if(interaction.commandName==='ping') {
         interaction.reply(`Received!`);
     }
-})
+});
 
 client.login(process.env.TOKEN);
