@@ -10,7 +10,7 @@ const client = new Client({
     ],
 });
 
-client.on(Events.ClientReady, (x) => {
+client.on("ready", (x) => {
     console.log(`${x.user.tag} is ready!`);
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +52,7 @@ client.on(Events.ClientReady, (x) => {
 client.on('interactionCreate', (interaction) => {
     if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName==='ping') {
-        interaction.reply(`Received!`);
+        interaction.reply('Received!');
     }
 });
 
