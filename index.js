@@ -49,7 +49,7 @@ client.on(Events.ClientReady, (x) => {
     client.application.commands.create(ping);
 });
 
-client.on('interactionCreate'), (interaction) => {
+client.on('interactionCreate', (interaction) => {
     if(!interaction.isChatInputCommand()) return;
     if(interaction.commandName==='ping') {
         interaction.reply(`Received!`);
