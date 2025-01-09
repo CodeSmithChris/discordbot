@@ -1,5 +1,7 @@
-const {Client, ActivityType, GatewayIntentBits, PartialTypes, EmbedBuilder, SlashCommandBuilder, PermissionsBitField, Permission, Events, IntentsBitField} = require('discord.js');
 require('dotenv').config();
+
+const { Client, GatewayIntentBits } = require( 'discord.js' );
+const eventHandler = require("./handlers/eventHandler");
 
 const client = new Client({
     intents: [
@@ -11,7 +13,7 @@ const client = new Client({
 });
 
 client.on("ready", (x) => {
-    console.log(`${x.user.tag} is ready!`);
+    console.log( `${x.user.tag} is ready!` );
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -34,26 +36,14 @@ client.on("ready", (x) => {
     ]
 
     setInterval(() => {
-        const random = Math.floor(Math.random()*activities.length);
-        client.user.setActivity(activities[random]);
+        const random = Math.floor( Math.random() * activities.length );
+        client.user.setActivity( activities[random] );
     }, 300000);
 
 /////////////////////////////////////////////////////////////////////////////////////////
 //
-// Slash commands
 //
-    const ping = new SlashCommandBuilder() 
-    .setName ('ping')
-    .setDescription('Test for bot functionality');
 
-    client.application.commands.create(ping);
-});
-
-client.on('interactionCreate', (interaction) => {
-    if(!interaction.isChatInputCommand()) return;
-    if(interaction.commandName==='ping') {
-        interaction.reply('Received!');
-    }
-});
+eventHandler(client);
 
 client.login(process.env.TOKEN);
